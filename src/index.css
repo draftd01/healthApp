@@ -1,0 +1,79 @@
+/**
+ * index.css - Global styles
+ * Bootstrap is loaded via CDN in index.html
+ */
+
+:root {
+  --primary-color: #0d6efd;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --success-color: #198754;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure full height layout */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Card hover effect */
+.card {
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Alert styles */
+.bg-danger-light {
+  background-color: #f8d7da;
+}
+
+/* Input focus states */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Button animations */
+.btn {
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Responsive padding */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 1rem;
+  }
+}
+
+/* Navbar smooth transitions */
+.navbar {
+  transition: background-color 0.3s ease;
+}
+
+/* List group styling */
+.list-group-item {
+  border-left: 4px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.list-group-item:hover {
+  border-left-color: var(--primary-color);
+  background-color: #f8f9fa;
+}
