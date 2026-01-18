@@ -5,7 +5,7 @@ from django.http import FileResponse, JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import HealthProfile
+from .models import Patient
 
 
 def index(request):
@@ -41,7 +41,7 @@ def create_profile(request):
     except Exception:
         return JsonResponse({'ok': False, 'error': 'Invalid JSON'}, status=400)
 
-    profile = HealthProfile.objects.create(
+    profile = Patient.objects.create(
         first_name=data.get('first_name', '').strip(),
         last_name=data.get('last_name', '').strip(),
         age=data.get('age') or None,

@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import HealthProfile
+from .models import Patient
 
 
-@admin.register(HealthProfile)
+@admin.register(Patient)
 class HealthProfileAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'age', 'created_at')
+    list_display = ('first_name', 'last_name', 'dob') #, 'created_at')
