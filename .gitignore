@@ -2,3 +2,5 @@ node_modules
 .venv
 *.sqlite3
 templates
+*.md
+!README.md
