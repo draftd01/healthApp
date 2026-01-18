@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
   TrendingUp,
@@ -20,23 +20,51 @@ import {
 export const Layout = ({ children }) => {
 
     const [currentView, setCurrentView] = React.useState('dashboard');
+    const navigate = useNavigate();
     return (
     <div className="min-vh-100 d-flex flex-column">
-        {/* Navigation */}
-        <div className="bg-white">
-            <div className="max-w-7xl mx-auto px-6">
-                <nav className="d-flex space-x-8">
-                {[
-                    { id: 'dashboard', label: 'Clinical Dashboard', icon: TrendingUp },
-                    { id: 'profile', label: 'Patient Profile', icon: User },
-                    { id: 'vitals', label: 'Labs & Vitals', icon: Activity },
-                    { id: 'conditions', label: 'Medical History', icon: FileText },
-                    { id: 'consultation', label: 'AI Consultation', icon: Brain }
-                ].map(nav => (
-                    <button
+      <div className="bg-white shadow border-bottom">
+        <div className="container-fluid px-4 py-3">
+          <div className="d-flex align-items-center justify-content-between">
+            <div className="d-flex align-items-center">
+              <Brain className="text-primary me-3" size={32} />
+              <div>
+                <h1 className="fs-3 fw-bold text-dark">HealthAdvisor Pro</h1>
+                <p className="fs-6 m-0 text-muted">Evidence-Based Clinical Decision Support</p>
+              </div>
+            </div>
+            <div className="d-flex align-items-center gap-3">
+              <div className="d-flex align-items-center">
+                <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center me-2" style={{ width: '40px', height: '40px' }}>
+                  <span className="text-white fw-bold">{'U'}</span>
+                </div>
+                <div className="fs-6">
+                  <div className="fw-medium">{'User'}</div>
+                  <div className="text-muted">Patient Profile</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+              <nav className="d-flex space-x-8">
+              {[
+                  { id: 'dashboard', label: 'Clinical Dashboard', icon: TrendingUp, path: '/dashboard' },
+                  { id: 'profile', label: 'Patient Profile', icon: User, path: '/profile' },
+                  { id: 'vitals', label: 'Labs & Vitals', icon: Activity, path: '/vitals' },
+                  { id: 'conditions', label: 'Medical History', icon: FileText, path: '/conditions' },
+                  { id: 'consultation', label: 'AI Consultation', icon: Brain, path: '/consultation' }
+              ].map(nav => (
+                  <button
                     type="button"
                     key={nav.id}
-                    onClick={() => setCurrentView(nav.id)}
+                    onClick={() => {
+                      setCurrentView(nav.id);
+                      navigate(nav.path);
+                    }}
                     className={`border border-0 py-4 px-2 ms-4 bg-white fw-medium fs-6 d-flex align-items-center ${
                         currentView === nav.id
                         ? 'border-bottom border-primary border-2 text-primary'
@@ -45,64 +73,12 @@ export const Layout = ({ children }) => {
                     >
                     <nav.icon className="mr-2" size={18} />
                     {nav.label}
-                    </button>
-                ))}
-                </nav>
-            </div>
-        </div>
-        {/* Header Navigation */}
-        {/* <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
-        <div className="container-fluid">
-          <Link to="/" className="navbar-brand fw-bold">
-            <Heart className="me-2" size={24} />
-            HealthApp
-          </Link>
-
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto gap-2">
-              <li className="nav-item">
-                <Link to="/" className="nav-link d-flex align-items-center gap-2">
-                  <LayoutDashboard size={18} />
-                  Dashboard
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/profile" className="nav-link d-flex align-items-center gap-2">
-                  <User size={18} />
-                  Profile
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/vitals" className="nav-link d-flex align-items-center gap-2">
-                  <Activity size={18} />
-                  Vitals
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/conditions" className="nav-link d-flex align-items-center gap-2">
-                  <Heart size={18} />
-                  Conditions
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/consultation" className="nav-link d-flex align-items-center gap-2">
-                  <MessageCircle size={18} />
-                  Consultation
-                </Link>
-              </li>
-            </ul>
+                  </button>
+              ))}
+              </nav>
           </div>
-        </div>
-      </nav> */}
+      </div>
+      {/* Header Navigation */}
 
       {/* Main Content */}
       <main className="flex-grow-1">
